@@ -3,9 +3,19 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "AcademyEmsApp": {
+    "AcademyEmsWeb": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/academy-ems-app",
+            "outputPath": "dist/academy-ems-web",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "AcademyEmsApp:build:production"
+              "buildTarget": "AcademyEmsWeb:build:production"
             },
             "development": {
-              "buildTarget": "AcademyEmsApp:build:development"
+              "buildTarget": "AcademyEmsWeb:build:development"
             }
           },
           "defaultConfiguration": "development"

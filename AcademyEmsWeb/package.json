@@ -1,5 +1,5 @@
 {
-  "name": "academy-ems-app",
+  "name": "academy-ems-web",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
