@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { CourseTypeComponent } from './CourseTypeApp.component';
+import { CourseTypeComponent } from './AcademyEmsApp.CourseTypeComponent';
 
 
 @NgModule({
