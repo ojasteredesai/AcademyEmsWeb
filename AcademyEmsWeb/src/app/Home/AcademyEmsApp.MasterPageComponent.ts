@@ -4,7 +4,7 @@ import {CourseType} from './AcademyEmsApp.model'
 
 @Component({
   selector: 'app-root',
-  templateUrl: './AcademyEmsApp.CourseTypeView.html',
+  templateUrl: './AcademyEmsApp.MasterPageView.html',
   styleUrl: './CourseTypeApp.component.css'
 })
 export class CourseTypeComponent {

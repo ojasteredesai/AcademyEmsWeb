@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
-import {CourseType} from './AcademyEmsApp.model'
+import {CourseType} from '../Home/AcademyEmsApp.model'
 
 @Component({
   selector: 'app-root',
   templateUrl: './AcademyEmsApp.CourseTypeView.html',
-  styleUrl: './AcademyEmsApp.component.css'
+  styleUrl: '../Home/AcademyEmsApp.component.css'
 })
 export class CourseTypeComponent {
   title = 'Course Type App';
