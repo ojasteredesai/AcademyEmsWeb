@@ -1,7 +1,21 @@
-
-<a href="Home">Home</a><br/>
-<a href="User">User</a><br/>
-<a href="Course">Course</a><br/>
-<div>
-    <router-outlet></router-outlet>
-</div>
+<table style="background-color:lightblue" bordercolor="blue">
+    <tr align="center">
+        <td colspan="2"><img [height]="100" [width]="100" src="https://academyems.in/wp-content/uploads/2021/11/cropped-cropped-academyems.jpg"/><br></td>
+    </tr>
+    <tr bordercolor="red">
+        <td  valign="top">
+            <a [routerLink]="['Home']">Home</a><br/>
+            <a [routerLink]="['User']">User</a><br/>
+            <a [routerLink]="['Course']">Course</a><br/>
+        </td>
+        <td>
+                <div>
+                    <router-outlet></router-outlet>
+                </div>
+        </td>
+    </tr>
+    <tr bordercolor="red"><td colspan="2"></td></tr>
+    <tr align="center">
+        <td colspan="2">Copyright Academy EMS 2024-2025</td>
+    </tr>
+</table>
