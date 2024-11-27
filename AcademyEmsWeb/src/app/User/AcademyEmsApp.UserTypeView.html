@@ -1,5 +1,26 @@
-This is a user type view
 <div class="tab">
     <button>User Types</button>
     <button>Users</button>
   </div>
+  
+  User Type: <input [(ngModel)]="UserTypeModel.UserTypeName" type="text"><br/>
+  User Type Description: <input [(ngModel)]="UserTypeModel.USerTypeDescription" type="text"><br/>
+  
+  <input (click)="Add()" type="button" value="Add"> <br/>
+  
+  {{UserTypeModel.UserTypeName}} <br/>
+  {{UserTypeModel.USerTypeDescription}} <br/>
+  
+  <table border="1">
+      <tr>
+        <td>UserType </td>
+        <td>UserType Name</td>
+        <td>UserType Description</td>
+      </tr>
+    
+      <tr *ngFor="let UserType of UserTypeModels">
+        <td>{{UserType.UserTypeId}}</td>
+        <td>{{UserType.UserTypeName}}</td>
+        <td>{{UserType.USerTypeDescription}}</td>
+      </tr>
+    </table>
