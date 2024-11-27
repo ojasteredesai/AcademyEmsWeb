@@ -1,5 +1,7 @@
 import { UserTypeComponent } from "../User/AcademyEmsApp.UserTypeComponent";
+import { UserComponent } from "../User/AcademyEmsApp.UserComponent";
 
 export const UserRoutes = [
-    { path: 'Add', component: UserTypeComponent }
+    { path: 'Types', component: UserTypeComponent },
+    { path: 'View', component: UserComponent }
 ];
