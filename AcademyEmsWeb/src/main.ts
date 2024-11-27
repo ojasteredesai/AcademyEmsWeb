@@ -1,5 +1,4 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
 import { AcademyEmsAppModule } from './app/AcademyEmsApp.MainModule';
 
 platformBrowserDynamic().bootstrapModule(AcademyEmsAppModule, {

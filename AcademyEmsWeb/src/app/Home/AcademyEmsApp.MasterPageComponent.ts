@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'emsapp-root',
+  selector: 'ems-app-root',
   templateUrl: './AcademyEmsApp.MasterPageView.html'
 })
 export class MasterPageComponent {
