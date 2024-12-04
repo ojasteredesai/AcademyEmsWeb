@@ -20,7 +20,7 @@ export class GridComponent{
 
     @Input("grid-data")
     set setGridData(_gridData:Array<any>){
-        this.setGridData = _gridData
+        this.gridData = _gridData
     }
 
     @Output("grid-selected")

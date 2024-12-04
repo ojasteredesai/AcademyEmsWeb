@@ -26,6 +26,6 @@ export class CourseTypeComponent {
     this.CourseTypeModel = new CourseType();
 
     
-    this.logger?.LogError("Add from usertype component");
+    this.logger?.LogError("Add from course component");
   }
 }
