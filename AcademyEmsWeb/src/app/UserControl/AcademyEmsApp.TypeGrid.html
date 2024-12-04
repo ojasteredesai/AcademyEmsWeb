@@ -1,0 +1,17 @@
+
+<table border="1">
+    <tr>
+      <td *ngFor="let col of gridColumns">
+        {{col.colName}}
+      </td>
+    </tr>
+  
+    <tr *ngFor="let data of gridData">
+        <td *ngFor="let col of gridColumns">
+            {{data[col.colName]}}
+        </td>
+        <td>
+            <a (click)="SelectGrid(data)">Select</a>
+        </td>
+    </tr>
+  </table>

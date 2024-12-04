@@ -5,7 +5,7 @@ import { MasterPageComponent } from './AcademyEmsApp.MasterPageComponent';
 import { HomeComponent } from './AcademyEmsApp.HomeComponent';
 import {MainRoutes} from "../Routing/AcademyEmsApp.MainRouting"
 import {RouterModule} from "@angular/router"
-
+import {BaseLogger, FileLogger} from '../Utility/AcademyEmsApp.Logger'
 
 @NgModule({
   declarations: [
@@ -16,7 +16,12 @@ import {RouterModule} from "@angular/router"
     BrowserModule,
     FormsModule      
   ],
-  providers: [],
+  providers: [
+    {
+      provide:BaseLogger,
+      useClass:FileLogger
+    }
+  ],
   bootstrap: [MasterPageComponent]
 })
 

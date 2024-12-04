@@ -11,16 +11,6 @@ Course Type Description: <input [(ngModel)]="CourseTypeModel.CourseTypeDescripti
 {{CourseTypeModel.CourseTypeName}} <br/>
 {{CourseTypeModel.CourseTypeDescription}} <br/>
 
-<table border="1">
-    <tr>
-      <td>CourseType </td>
-      <td>CourseType Name</td>
-      <td>CourseType Description</td>
-    </tr>
-  
-    <tr *ngFor="let courseType of CourseTypeModels">
-      <td>{{courseType.CourseTypeId}}</td>
-      <td>{{courseType.CourseTypeName}}</td>
-      <td>{{courseType.CourseTypeDescription}}</td>
-    </tr>
-  </table>
+<ems-grid [grid-data]="CourseTypeModels" 
+          [grid-columns]="[{'colName':'CourseTypeId'},{'colName':'CourseTypeName'},{'colName':'CourseTypeDescription'}]"
+           (grid-selected)="SelectCourseType($event)"></ems-grid>
