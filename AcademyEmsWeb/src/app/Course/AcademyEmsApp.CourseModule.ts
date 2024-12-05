@@ -6,6 +6,7 @@ import { CourseTypeComponent } from './AcademyEmsApp.CourseTypeComponent';
 import {CourseRoutes} from "../Routing/AcademyEmsApp.CourseRouting"
 import {RouterModule} from "@angular/router"
 import {GridComponent} from '../UserControl/AcademyEmsApp.TypeGridComponent'
+import {provideHttpClient} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import {GridComponent} from '../UserControl/AcademyEmsApp.TypeGridComponent'
     CommonModule,
     ReactiveFormsModule ,FormsModule
   ],
-  providers: [],
+  providers: [provideHttpClient()],
   bootstrap: [CourseTypeComponent]
 })
 

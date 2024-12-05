@@ -6,7 +6,9 @@
 Course Type: <input [(ngModel)]="CourseTypeModel.CourseTypeName" type="text"><br/>
 Course Type Description: <input [(ngModel)]="CourseTypeModel.CourseTypeDescription" type="text"><br/>
 
-<input (click)="Add()" type="button" value="Add"> <br/>
+<input (click)="Add()" type="button" value="Add locally"> 
+<input (click)="AddCourseType()" type="button" value="Add"> 
+<input (click)="GetCourseTypes()" type="button" value="Get All"> <br/>
 
 {{CourseTypeModel.CourseTypeName}} <br/>
 {{CourseTypeModel.CourseTypeDescription}} <br/>
