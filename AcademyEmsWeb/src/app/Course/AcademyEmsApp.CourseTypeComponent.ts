@@ -18,7 +18,6 @@ export class CourseTypeComponent {
   title = 'Course Type App';
   CourseTypeModel : CourseType = new CourseType();
   CourseTypeModels : Array<CourseType> = new Array<CourseType>();
-  CourseTypeModels1 : any[] = [];
   Disable:boolean=false;
   logger : BaseLogger | undefined;
 
@@ -32,9 +31,12 @@ export class CourseTypeComponent {
   }
 
   AddCourseType(){
-    this.Disable=true;
-    this.httpClient.get<CourseTypeServerResponse>("https://127.0.0.1:7174/api/CourseType/GetAllCourseTypes")
-    .pipe(map(response => response.courseTypes))
+    debugger;    
+    var saveDto : any={};
+    saveDto.Type = this.CourseTypeModel.type;
+    saveDto.Description = this.CourseTypeModel.description;
+
+    this.httpClient.post("https://localhost:7174/api/CourseType/CreateCourseType", this.CourseTypeModel)
     .subscribe({
       next: this.Success.bind(this),
       error: this.Error.bind(this)
@@ -43,7 +45,7 @@ export class CourseTypeComponent {
   }
 
   GetCourseTypesGeneric(){
-    this.httpClient.get<CourseTypeServerResponse>("https://127.0.0.1:7174/api/CourseType/GetAllCourseTypes")
+    this.httpClient.get<CourseTypeServerResponse>("https://localhost:7174/api/CourseType/GetAllCourseTypes")
     .pipe(map(response => response.courseTypes))
     .subscribe({
       next: this.Success.bind(this),
