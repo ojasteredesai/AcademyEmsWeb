@@ -31,12 +31,36 @@ export class CourseTypeComponent {
   }
 
   AddCourseType(){
-    this.httpClient.post("https://localhost:7174/api/CourseType/CreateCourseType", this.CourseTypeModel)
+    if(this.CourseTypeModel.id > 0)
+    {
+      this.UpdateCourseType();
+    }
+    else
+    {
+      this.httpClient.post("https://localhost:7174/api/CourseType/CreateCourseType", this.CourseTypeModel)
+      .subscribe({
+        next: this.GetAllCourseTypes.bind(this),
+        error: this.Error.bind(this)    
+     });
+    }
+  } 
+
+  UpdateCourseType(){
+    debugger;
+    this.httpClient.post("https://localhost:7174/api/CourseType/UpdateCourseType", this.CourseTypeModel)
     .subscribe({
       next: this.GetAllCourseTypes.bind(this),
       error: this.Error.bind(this)
    });
+  }
 
+  DeleteCourseType(){
+    debugger;
+    this.httpClient.post("https://localhost:7174/api/CourseType/DeleteCourseType?id="+this.CourseTypeModel.id,null)
+    .subscribe({
+      next: this.GetAllCourseTypes.bind(this),
+      error: this.Error.bind(this)
+   });
   }
 
   GetAllCourseTypes(){
