@@ -1,26 +1,44 @@
-<div class="tab">
-    <button (click)="navigate()">User Types</button>
-    <button>Users</button>
-  </div>
-  
-  User Type: <input [(ngModel)]="UserTypeModel.UserTypeName" type="text"><br/>
-  User Type Description: <input [(ngModel)]="UserTypeModel.USerTypeDescription" type="text"><br/>
-  
-  <input (click)="Add()" type="button" value="Add"> <br/>
-  
-  {{UserTypeModel.UserTypeName}} <br/>
-  {{UserTypeModel.USerTypeDescription}} <br/>
-  
-  <table border="1">
-      <tr>
-        <td>UserType </td>
-        <td>UserType Name</td>
-        <td>UserType Description</td>
-      </tr>
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <style>
+  .grid-container-element { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-gap: 20px; 
+    border: 1px solid black; 
+    width: 50%; 
+} 
+.grid-child-element { 
+    margin: 10px; 
+    border: 1px solid lightblue; 
+}
+
+    </style>
+</head>
+<body>
+  <h2>User Types</h2>
+  <p>You can add/update/delete and view all the available user types</p>
+  <div class="grid-container-element">
     
-      <tr *ngFor="let UserType of UserTypeModels">
-        <td>{{UserType.UserTypeId}}</td>
-        <td>{{UserType.UserTypeName}}</td>
-        <td>{{UserType.USerTypeDescription}}</td>
-      </tr>
-    </table>
+    <div class="grid-child-element">     
+      <input (click)="GetAllUserTypes()" type="button" value="Get All"> <br/>
+      <ems-grid [grid-data]="UserTypeModels" 
+      [grid-columns]="[{'colName':'id'},{'colName':'type'},{'colName':'description'}]"
+       (grid-selected)="SelectUserType($event)"></ems-grid>
+    </div>
+
+    <div class="grid-child-element">
+      Course Id: <input [(ngModel)]="UserTypeModel.id" type="text"><br/>
+      Course Type: <input [(ngModel)]="UserTypeModel.type" type="text"><br/>
+      Course Type Description: <input [(ngModel)]="UserTypeModel.description" type="text"><br/>
+
+      <input (click)="AddUserType()" type="button" value="Add/Update" (disabled) ="Disable">
+      <input (click)="DeleteUserType()" type="button" value="Delete" (disabled) ="Disable">
+    </div>
+</div>
+</body>
+</html>
+
+

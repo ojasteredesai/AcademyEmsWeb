@@ -1,6 +1,6 @@
 export class UserType
 {
-    UserTypeId:number=0;
-    UserTypeName:string="";
-    USerTypeDescription:string="";
+    id:number=0;
+    type:string="";
+    description:string="";
 }

@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { UserComponent } from './AcademyEmsApp.UserComponent';
 import { UserTypeComponent } from './AcademyEmsApp.UserTypeComponent';
 import {UserRoutes} from "../Routing/AcademyEmsApp.UserRouting"
 import {RouterModule} from "@angular/router"
-
+import {provideHttpClient} from '@angular/common/http'
+import {UserControlModule} from '../UserControl/AcademyEmsApp.UserControlModule'
 
 @NgModule({
   declarations: [
@@ -14,9 +15,11 @@ import {RouterModule} from "@angular/router"
   imports: [
     RouterModule.forChild(UserRoutes),
     CommonModule,
-    FormsModule      
+    ReactiveFormsModule,
+    FormsModule   
+    ,UserControlModule   
   ],
-  providers: [],
+  providers: [provideHttpClient()],
   bootstrap: [UserTypeComponent]
 })
 

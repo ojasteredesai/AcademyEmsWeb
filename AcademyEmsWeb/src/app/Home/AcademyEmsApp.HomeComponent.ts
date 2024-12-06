@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import{FileLogger, BaseLogger} from '../Utility/AcademyEmsApp.Logger'
+import{BaseLogger} from '../Utility/AcademyEmsApp.Logger'
 
 @Component({
   templateUrl: './AcademyEmsApp.HomeView.html'

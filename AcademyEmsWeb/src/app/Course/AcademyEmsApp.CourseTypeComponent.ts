@@ -46,7 +46,6 @@ export class CourseTypeComponent {
   } 
 
   UpdateCourseType(){
-    debugger;
     this.httpClient.post("https://localhost:7174/api/CourseType/UpdateCourseType", this.CourseTypeModel)
     .subscribe({
       next: this.GetAllCourseTypes.bind(this),
@@ -55,7 +54,6 @@ export class CourseTypeComponent {
   }
 
   DeleteCourseType(){
-    debugger;
     this.httpClient.post("https://localhost:7174/api/CourseType/DeleteCourseType?id="+this.CourseTypeModel.id,null)
     .subscribe({
       next: this.GetAllCourseTypes.bind(this),

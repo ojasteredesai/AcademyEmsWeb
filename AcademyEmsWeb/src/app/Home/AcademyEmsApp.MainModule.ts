@@ -14,7 +14,7 @@ import {BaseLogger, FileLogger} from '../Utility/AcademyEmsApp.Logger'
   imports: [
     RouterModule.forRoot(MainRoutes),
     BrowserModule,
-    FormsModule      
+    FormsModule     
   ],
   providers: [
     {
