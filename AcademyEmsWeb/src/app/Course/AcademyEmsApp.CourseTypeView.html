@@ -1,18 +1,18 @@
-<div class="tab">
+<!-- <div class="tab">
   <button>Course Types</button>
   <button>Courses</button>
-</div>
+</div> -->
 
-Course Type: <input [(ngModel)]="CourseTypeModel.CourseTypeName" type="text"><br/>
-Course Type Description: <input [(ngModel)]="CourseTypeModel.CourseTypeDescription" type="text"><br/>
+Course Type: <input [(ngModel)]="CourseTypeModel.id" type="text"><br/>
+Course Type Description: <input [(ngModel)]="CourseTypeModel.description" type="text"><br/>
 
 <input (click)="Add()" type="button" value="Add locally"> 
 <input (click)="AddCourseType()" type="button" value="Add"> 
-<input (click)="GetCourseTypes()" type="button" value="Get All"> <br/>
+<input (click)="GetCourseTypesGeneric()" type="button" value="Get All"> <br/>
 
-{{CourseTypeModel.CourseTypeName}} <br/>
-{{CourseTypeModel.CourseTypeDescription}} <br/>
+{{CourseTypeModel.id}} <br/>
+{{CourseTypeModel.description}} <br/>
 
 <ems-grid [grid-data]="CourseTypeModels" 
-          [grid-columns]="[{'colName':'CourseTypeId'},{'colName':'CourseTypeName'},{'colName':'CourseTypeDescription'}]"
+          [grid-columns]="[{'colName':'id'},{'colName':'type'},{'colName':'description'}]"
            (grid-selected)="SelectCourseType($event)"></ems-grid>

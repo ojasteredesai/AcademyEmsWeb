@@ -20,7 +20,6 @@ export class GridComponent{
 
     @Input("grid-data")
     set setGridData(_gridData:Array<any>){
-        debugger;
         this.gridData = _gridData
     }
 

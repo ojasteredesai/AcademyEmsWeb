@@ -1,6 +1,5 @@
 export class CourseType
 {
-    CourseTypeId:number=0;
-    CourseTypeName:string="";
-    CourseTypeDescription:string="";
+    id:number=0;
+    description:string="";
 }
