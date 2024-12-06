@@ -31,56 +31,30 @@ export class CourseTypeComponent {
   }
 
   AddCourseType(){
-    debugger;    
-    var saveDto : any={};
-    saveDto.Type = this.CourseTypeModel.type;
-    saveDto.Description = this.CourseTypeModel.description;
-
     this.httpClient.post("https://localhost:7174/api/CourseType/CreateCourseType", this.CourseTypeModel)
     .subscribe({
-      next: this.Success.bind(this),
+      next: this.GetAllCourseTypes.bind(this),
       error: this.Error.bind(this)
    });
 
   }
 
-  GetCourseTypesGeneric(){
+  GetAllCourseTypes(){
     this.httpClient.get<CourseTypeServerResponse>("https://localhost:7174/api/CourseType/GetAllCourseTypes")
     .pipe(map(response => response.courseTypes))
     .subscribe({
-      next: this.Success.bind(this),
+      next: this.SuccessGet.bind(this),
       error: this.Error.bind(this)
    });
   }
 
-  // GetCourseTypes(){
-  //   this.httpClient.get("https://127.0.0.1:7174/api/CourseType/GetAllCourseTypes")
-  //   //.subscribe((result:any)=>
-  //     // {  
-  //     //   debugger;
-  //     //   this.logger?.LogError("api calling  component result" + result);
-  //     //   this.CourseTypeModels = result
-  //     // });
-  //   .subscribe({
-  //     next: this.Success.bind(this),
-  //     error: this.Error.bind(this)
-  //  });
-  // }
-
   Error(res:any){
-    console.debug(res);
+    this.logger?.LogError(res);
     this.Disable=false;  
   }
 
-  Success(res:any){
-    debugger;
+  SuccessGet(res:any){
     this.CourseTypeModels = res;  
     this.Disable=false;  
-  }
-
-  Add(){
-    this.CourseTypeModels.push(this.CourseTypeModel);
-    this.CourseTypeModel = new CourseType();    
-    this.logger?.LogError("Add from course component");
   }
 }

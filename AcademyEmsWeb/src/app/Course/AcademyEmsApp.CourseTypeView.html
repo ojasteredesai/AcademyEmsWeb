@@ -1,18 +1,42 @@
-<!-- <div class="tab">
-  <button>Course Types</button>
-  <button>Courses</button>
-</div> -->
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <style>
+  .grid-container-element { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-gap: 20px; 
+    border: 1px solid black; 
+    width: 50%; 
+} 
+.grid-child-element { 
+    margin: 10px; 
+    border: 1px solid lightblue; 
+}
 
-Course Type: <input [(ngModel)]="CourseTypeModel.type" type="text"><br/>
-Course Type Description: <input [(ngModel)]="CourseTypeModel.description" type="text"><br/>
+    </style>
+</head>
+<body>
+  <h2>Course Types</h2>
+  <p>You can add/update/delete and view all the available course types</p>
+  <div class="grid-container-element">
+    
+    <div class="grid-child-element">     
+      <input (click)="GetAllCourseTypes()" type="button" value="Get All"> <br/>
+      <ems-grid [grid-data]="CourseTypeModels" 
+      [grid-columns]="[{'colName':'id'},{'colName':'type'},{'colName':'description'}]"
+       (grid-selected)="SelectCourseType($event)"></ems-grid>
+    </div>
 
-<input (click)="Add()" type="button" value="Add locally"> 
-<input (click)="AddCourseType()" type="button" value="Add" dis="Disable"> 
-<input (click)="GetCourseTypesGeneric()" type="button" value="Get All"> <br/>
+    <div class="grid-child-element">
+      Course Type: <input [(ngModel)]="CourseTypeModel.type" type="text"><br/>
+      Course Type Description: <input [(ngModel)]="CourseTypeModel.description" type="text"><br/>
 
-<!-- {{CourseTypeModel.id}} <br/>
-{{CourseTypeModel.description}} <br/> -->
+      <input (click)="AddCourseType()" type="button" value="Add" (disabled) ="Disable">
+    </div>
+</div>
+</body>
+</html>
 
-<ems-grid [grid-data]="CourseTypeModels" 
-          [grid-columns]="[{'colName':'id'},{'colName':'type'},{'colName':'description'}]"
-           (grid-selected)="SelectCourseType($event)"></ems-grid>
+
