@@ -7,11 +7,11 @@ Course Type: <input [(ngModel)]="CourseTypeModel.id" type="text"><br/>
 Course Type Description: <input [(ngModel)]="CourseTypeModel.description" type="text"><br/>
 
 <input (click)="Add()" type="button" value="Add locally"> 
-<input (click)="AddCourseType()" type="button" value="Add"> 
+<input (click)="AddCourseType()" type="button" value="Add" dis="Disable"> 
 <input (click)="GetCourseTypesGeneric()" type="button" value="Get All"> <br/>
 
-{{CourseTypeModel.id}} <br/>
-{{CourseTypeModel.description}} <br/>
+<!-- {{CourseTypeModel.id}} <br/>
+{{CourseTypeModel.description}} <br/> -->
 
 <ems-grid [grid-data]="CourseTypeModels" 
           [grid-columns]="[{'colName':'id'},{'colName':'type'},{'colName':'description'}]"

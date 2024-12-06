@@ -19,7 +19,7 @@ export class CourseTypeComponent {
   CourseTypeModel : CourseType = new CourseType();
   CourseTypeModels : Array<CourseType> = new Array<CourseType>();
   CourseTypeModels1 : any[] = [];
-
+  Disable:boolean=false;
   logger : BaseLogger | undefined;
 
   constructor(_logger : BaseLogger, public httpClient:HttpClient){
@@ -32,7 +32,13 @@ export class CourseTypeComponent {
   }
 
   AddCourseType(){
-
+    this.Disable=true;
+    this.httpClient.get<CourseTypeServerResponse>("https://127.0.0.1:7174/api/CourseType/GetAllCourseTypes")
+    .pipe(map(response => response.courseTypes))
+    .subscribe({
+      next: this.Success.bind(this),
+      error: this.Error.bind(this)
+   });
 
   }
 
@@ -61,10 +67,13 @@ export class CourseTypeComponent {
 
   Error(res:any){
     console.debug(res);
+    this.Disable=false;  
   }
 
   Success(res:any){
-    this.CourseTypeModels = res;    
+    debugger;
+    this.CourseTypeModels = res;  
+    this.Disable=false;  
   }
 
   Add(){
