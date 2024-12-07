@@ -1,1 +1,61 @@
-This is a user view
+
+
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <style>
+  .grid-container-element { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-gap: 20px; 
+    border: 1px solid black; 
+    width: 50%; 
+} 
+.grid-child-element { 
+    margin: 10px; 
+    border: 1px solid lightblue; 
+}
+
+    </style>
+</head>
+<body>
+  <h2>User Types</h2>
+  <p>You can add/update/delete and view all the available users</p>
+  <div class="grid-container-element">    
+    <div class="grid-child-element">     
+      <input (click)="GetAllUsers()" type="button" value="Get All"> <br/>
+      <ems-grid [grid-data]="UserModels" 
+      [grid-columns]="GridColumns"
+       (grid-selected)="SelectedUser($event)"></ems-grid>
+    </div>
+
+    <div class="grid-child-element">
+      User Id: <input [(ngModel)]="UserModel.id" type="text"><br/>
+      <div>
+      User Type: <select name="UserTypeDropdown" [(ngModel)]="SelectedUserTypeId" (change)="SelectedUserType($event)">
+        <option [value]="0">Select UserType</option>
+        <option [value]="userType.id" *ngFor="let userType of UserTypes">{{userType.name}}</option>
+        </select>
+      </div>
+      First Name: <input [(ngModel)]="UserModel.firstName" type="text"><br/>
+      Last Name: <input [(ngModel)]="UserModel.lastName" type="text"><br/>
+      Date of Birth: <input [(ngModel)]="UserModel.dateOfBirth" type="date"><br/>
+      Gender: <input [(ngModel)]="UserModel.gender" type="text"><br/>
+      E-Mail: <input [(ngModel)]="UserModel.userEmail" type="text"><br/>
+      Mobile-No: <input [(ngModel)]="UserModel.mobileNo" type="text"><br/>
+      Identity Type: <input [(ngModel)]="UserModel.identityType" type="text"><br/>
+      Identity Id: <input [(ngModel)]="UserModel.identityId" type="text"><br/>
+      Address Line 1: <input [(ngModel)]="UserModel.address1" type="text"><br/>
+      Address Line 2: <input [(ngModel)]="UserModel.address2" type="text"><br/>
+      City: <input [(ngModel)]="UserModel.city" type="text"><br/>
+      Pin Code: <input [(ngModel)]="UserModel.pinCode" type="text"><br/>
+
+      <input (click)="AddUserType()" type="button" value="Add/Update" (disabled) ="Disable">
+      <input (click)="DeleteUserType()" type="button" value="Delete" (disabled) ="Disable">
+    </div>
+</div>
+</body>
+</html>
+
+

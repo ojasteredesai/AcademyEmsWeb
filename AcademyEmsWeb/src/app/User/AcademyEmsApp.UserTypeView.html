@@ -25,14 +25,14 @@
     <div class="grid-child-element">     
       <input (click)="GetAllUserTypes()" type="button" value="Get All"> <br/>
       <ems-grid [grid-data]="UserTypeModels" 
-      [grid-columns]="[{'colName':'id'},{'colName':'type'},{'colName':'description'}]"
+      [grid-columns]="GridColumns"
        (grid-selected)="SelectUserType($event)"></ems-grid>
     </div>
 
     <div class="grid-child-element">
-      Course Id: <input [(ngModel)]="UserTypeModel.id" type="text"><br/>
-      Course Type: <input [(ngModel)]="UserTypeModel.type" type="text"><br/>
-      Course Type Description: <input [(ngModel)]="UserTypeModel.description" type="text"><br/>
+      User Id: <input [(ngModel)]="UserTypeModel.id" type="text"><br/>
+      User Type: <input [(ngModel)]="UserTypeModel.type" type="text"><br/>
+      User Type Description: <input [(ngModel)]="UserTypeModel.description" type="text"><br/>
 
       <input (click)="AddUserType()" type="button" value="Add/Update" (disabled) ="Disable">
       <input (click)="DeleteUserType()" type="button" value="Delete" (disabled) ="Disable">

@@ -19,6 +19,7 @@ export class UserTypeComponent {
   title = 'User Type App';
   UserTypeModel : UserType = new UserType();
   UserTypeModels : Array<UserType> = new Array<UserType>();
+  GridColumns=[{'colName':'id','displayName':'Id'},{'colName':'type','displayName':'User Type'},{'colName':'description','displayName':'Description'}]
   Disable:boolean=false;
   logger : BaseLogger | undefined;
 
