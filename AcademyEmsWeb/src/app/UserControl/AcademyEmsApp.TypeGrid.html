@@ -1,17 +1,50 @@
 
-<table border="1">
-    <tr>
-      <td *ngFor="let col of gridColumns">
-        {{col.displayName}}
-      </td>
-    </tr>
-  
-    <tr *ngFor="let data of gridData">
-        <td *ngFor="let col of gridColumns">
-            {{data[col.colName]}}
-        </td>
-        <td>
-            <a (click)="SelectGrid(data)">Select</a>
-        </td>
-    </tr>
-  </table>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  border: 1px solid #0e0404;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  border: 1px solid #0e0404;
+  background-color:#dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(odd) {
+  background-color: #d3e7fa; 
+}
+</style>
+</head>
+  <body>
+    <table border="1">
+      <tr>
+        <th *ngFor="let col of gridColumns">
+          {{col.displayName}}
+        </th>
+        <th>Update/Delete</th>
+      </tr>
+    
+      <tr *ngFor="let data of gridData">
+          <td *ngFor="let col of gridColumns">
+              {{data[col.colName]}}
+          </td>
+          <td>
+              <a (click)="SelectGrid(data)"><u><font color='blue'>Select</font></u></a>
+          </td>
+      </tr>
+    </table>
+  </body>
+</html>
+
