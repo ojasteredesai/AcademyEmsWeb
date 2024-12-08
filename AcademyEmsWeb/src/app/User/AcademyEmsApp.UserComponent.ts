@@ -24,7 +24,7 @@ export class UserComponent {
   GridColumns = [{'colName':'id','displayName':'Id'},{'colName':'userTypeName','displayName':'User Type'},{'colName':'firstName','displayName':'First Name'}
                   ,{'colName':'lastName','displayName':'Last Name'},{'colName':'dateOfBirth','displayName':'DOB'},{'colName':'gender','displayName':'Gender'}
                   ,{'colName':'userEmail','displayName':'E-Mail'} ,{'colName':'mobileNo','displayName':'Mobile No'},{'colName':'identityId','displayName':'Identity Id'}
-                  ,{'colName':'','identityType':'Identity Type'},{'colName':'address1','displayName':'Address Line 1'},{'colName':'address2','displayName':'Address Line 2'}
+                  ,{'colName':'identityType','displayName':'Identity Type'},{'colName':'address1','displayName':'Address Line 1'},{'colName':'address2','displayName':'Address Line 2'}
                   ,{'colName':'city','displayName':'City'},{'colName':'pinCode','displayName':'Pincode'}
   ];  
   SelectedUserTypeId:string = "0";
@@ -40,6 +40,8 @@ export class UserComponent {
 
   SelectedUserType(_selected:any){
     this.SelectedUserTypeId = _selected.target.value;
+    this.UserModel.userTypeId = _selected.target.value;
+    this.UserModel.userTypeName = _selected.target.value;
   }
 
   AddUserType(){
