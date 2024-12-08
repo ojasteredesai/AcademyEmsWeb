@@ -5,11 +5,19 @@
  
 <head>
     <style>
+      input[type=text], input[type=date], select {
+     
+        padding: 5px 5px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
     .grid-container-element { 
       display: grid; 
       grid-template-columns: 1fr 1fr; 
       grid-gap: 10; 
-      border: 1px solid black; 
       width: 100%; 
     } 
     .grid-child-element { 
@@ -18,51 +26,262 @@
         width: auto; 
         gap: 10px;
     }
+    .div-center {
+      width: 50%;
+    }
   </style>
 </head>
 <body>
-  <h2>User Types</h2>
-  <p>You can add/update/delete and view all the available users</p>
+  <h2>Users</h2>
+  <p>You can add/update/delete/view all the available users</p>
   <div class="grid-container-element">
   <div class="grid-child-element">
-    User Id: <input [(ngModel)]="UserModel.id" type="text"><br/>
-    <div>
-    User Type: <select name="UserTypeDropdown" [(ngModel)]="SelectedUserTypeId" (change)="SelectedUserType($event)">
-      <option [value]="0">Select UserType</option>
-      <option [value]="userType.id" *ngFor="let userType of UserTypes">{{userType.name}}</option>
-      </select>
-    </div>
-    First Name: <input [(ngModel)]="UserModel.firstName" type="text"><br/>
-    Last Name: <input [(ngModel)]="UserModel.lastName" type="text"><br/>
-    Date of Birth: <input [(ngModel)]="UserModel.dateOfBirth" type="date"><br/>
-    Gender: <input [(ngModel)]="UserModel.gender" type="text"><br/>
-    E-Mail: <input [(ngModel)]="UserModel.userEmail" type="text"><br/>
-    Mobile-No: <input [(ngModel)]="UserModel.mobileNo" type="text"><br/>
-    Identity Type: <input [(ngModel)]="UserModel.identityType" type="text"><br/>
-    Identity Id: <input [(ngModel)]="UserModel.identityId" type="text"><br/>
-    Address Line 1: <input [(ngModel)]="UserModel.address1" type="text"><br/>
-    Address Line 2: <input [(ngModel)]="UserModel.address2" type="text"><br/>
-    City: <input [(ngModel)]="UserModel.city" type="text"><br/>
-    Pin Code: <input [(ngModel)]="UserModel.pinCode" type="text"><br/>
+    <table>
+      <tr>
+        <td>
+          User Id:
+        </td>
+        <td>
+          <input [(ngModel)]="UserModel.id" type="text" disabled="true">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          User Type:
+        </td>
+        <td>
+          <select name="UserTypeDropdown" [(ngModel)]="SelectedUserTypeId" (change)="SelectedUserType($event)">
+            <option [value]="0">Select UserType</option>
+            <option [value]="userType.id" *ngFor="let userType of UserTypes">{{userType.name}}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          First Name:
+        </td>
+        <td>
+          <input [(ngModel)]="UserModel.firstName" type="text" size="10%">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Last Name:
+        </td>
+        <td>
+          <input [(ngModel)]="UserModel.lastName" type="text">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Date of Birth:
+        </td>
+        <td>
+          <input [(ngModel)]="UserModel.dateOfBirth" type="date">
+        </td>
+      </tr>      
+      <tr>
+        <td>
+          Gender:
+        </td>
+        <td>
+          <input [(ngModel)]="UserModel.gender" type="text">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          E-Mail:
+        </td>
+        <td>
+          <input [(ngModel)]="UserModel.userEmail" type="text">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          MobileNo:
+        </td>
+        <td>
+          <input [(ngModel)]="UserModel.mobileNo" type="text">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Identity Type:
+        </td>
+        <td>
+          <input [(ngModel)]="UserModel.identityType" type="text">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Identity Id:
+        </td>
+        <td>
+          <input [(ngModel)]="UserModel.identityId" type="text">
+        </td>
+      </tr>
+
+      
+      <tr>
+        <td>
+          Address Line 1:
+        </td>
+        <td>
+          <input [(ngModel)]="UserModel.address1" type="text">
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          Address Line 2:
+        </td>
+        <td>
+          <input [(ngModel)]="UserModel.address2" type="text">
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          City:
+        </td>
+        <td>
+          <input [(ngModel)]="UserModel.city" type="text">
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          Pin Code:
+        </td>
+        <td>
+          <input [(ngModel)]="UserModel.pinCode" type="text">
+        </td>
+      </tr>
+    </table>
   </div>
   <div class="grid-child-element">
-    User Id: {{UserModel.id}}<br/>
-    User Type: {{UserModel.userTypeName}}<br/>
-    First Name: {{UserModel.firstName}}<br/>
-    Last Name:  {{UserModel.lastName}}<br/>
-    Date of Birth: {{UserModel.dateOfBirth}}<br/>
-    Gender: {{UserModel.gender}}<br/>
-    E-Mail: {{UserModel.userEmail}}<br/>
-    Mobile-No: {{UserModel.mobileNo}}<br/>
-    Identity Type: {{UserModel.identityType}}<br/>
-    Identity Id: {{UserModel.identityId}}<br/>
-    Address Line 1: {{UserModel.address1}}<br/>
-    Address Line 2: {{UserModel.address2}}<br/>
-    City: {{UserModel.city}}<br/>
-    Pin Code: {{UserModel.pinCode}}<br/>
+    <table [cellPadding]="4">
+      <tr>
+        <td>
+          User Id:
+        </td>
+        <td>
+          {{UserModel.id}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          User Type:
+        </td>
+        <td>
+          {{UserModel.userTypeName}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          First Name:
+        </td>
+        <td>
+          {{UserModel.firstName}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Last Name:
+        </td>
+        <td>
+          {{UserModel.lastName}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Date of Birth:
+        </td>
+        <td>
+          {{UserModel.dateOfBirth}}
+        </td>
+      </tr>      
+      <tr>
+        <td>
+          Gender:
+        </td>
+        <td>
+          {{UserModel.gender}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          E-Mail:
+        </td>
+        <td>
+          {{UserModel.userEmail}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          MobileNo:
+        </td>
+        <td>
+          {{UserModel.mobileNo}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Identity Type:
+        </td>
+        <td>
+          {{UserModel.identityType}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Identity Id:
+        </td>
+        <td>
+          {{UserModel.identityId}}
+        </td>
+      </tr>      
+      <tr>
+        <td>
+          Address Line 1:
+        </td>
+        <td>
+          {{UserModel.address1}}
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          Address Line 2:
+        </td>
+        <td>
+          {{UserModel.address2}}
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          City:
+        </td>
+        <td>
+          {{UserModel.city}}
+        </td>
+      </tr>      
+      <tr>
+        <td>
+          Pin Code:
+        </td>
+        <td>
+          {{UserModel.pinCode}}
+        </td>
+      </tr>  
+    </table>
+    <hr/>
+    <div  class="div-center">
+      <input (click)="AddUserType()" type="button" value="Add/Update" (disabled) ="Disable">
+      <input (click)="DeleteUserType()" type="button" value="Delete" (disabled) ="Disable">
 
-    <input (click)="AddUserType()" type="button" value="Add/Update" (disabled) ="Disable">
-    <input (click)="DeleteUserType()" type="button" value="Delete" (disabled) ="Disable">
+    </div>
   </div>
 </div>
     <div class="grid-child-element">     

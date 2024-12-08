@@ -27,7 +27,7 @@ export class UserComponent {
                   ,{'colName':'','identityType':'Identity Type'},{'colName':'address1','displayName':'Address Line 1'},{'colName':'address2','displayName':'Address Line 2'}
                   ,{'colName':'city','displayName':'City'},{'colName':'pinCode','displayName':'Pincode'}
   ];  
-  SelectedUserTypeId:string = "";
+  SelectedUserTypeId:string = "0";
 
   constructor(_logger : BaseLogger, public httpClient:HttpClient){
     this.logger = _logger;
