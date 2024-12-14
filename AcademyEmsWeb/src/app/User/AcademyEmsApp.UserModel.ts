@@ -7,7 +7,8 @@ export class User
     userName:string="";
     firstName:string="";
     lastName:string="";
-    dateOfBirth:Date=new Date();
+   // dateOfBirth:Date=new Date();
+    dateOfBirth:string="";
     gender:string="";
     userEmail:string="";
     mobileNo:number=0;

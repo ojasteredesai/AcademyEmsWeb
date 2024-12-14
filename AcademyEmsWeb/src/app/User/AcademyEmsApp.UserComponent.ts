@@ -3,6 +3,7 @@ import {User} from './AcademyEmsApp.UserModel'
 import {BaseLogger} from '../Utility/AcademyEmsApp.Logger'
 import {HttpClient} from '@angular/common/http'
 import { map } from 'rxjs/operators';
+import { formatDate } from '@angular/common';
 
 export interface UserServerResponse {
   success: string;
@@ -21,6 +22,7 @@ export class UserComponent {
   Disable:boolean=false;
   logger : BaseLogger | undefined;
   UserTypes = [{id:1,name:'Admin'},{id:2,name:'Trainer'},{id:3,name:'Student'},{id:4,name:'Staff'}];
+  Genders = [{id:1,name:'M'},{id:2,name:'F'}];
   GridColumns = [{'colName':'id','displayName':'Id'},{'colName':'userTypeName','displayName':'User Type'},{'colName':'firstName','displayName':'First Name'}
                   ,{'colName':'lastName','displayName':'Last Name'},{'colName':'dateOfBirth','displayName':'DOB'},{'colName':'gender','displayName':'Gender'}
                   ,{'colName':'userEmail','displayName':'E-Mail'} ,{'colName':'mobileNo','displayName':'Mobile No'},{'colName':'identityId','displayName':'Identity Id'}
@@ -28,10 +30,21 @@ export class UserComponent {
                   ,{'colName':'city','displayName':'City'},{'colName':'pinCode','displayName':'Pincode'}
   ];  
   SelectedUserTypeId:string = "0";
+  SelectedGenderId:string = "0";
+  minDate: Date;
+  maxDate: Date;
 
   constructor(_logger : BaseLogger, public httpClient:HttpClient){
     this.logger = _logger;
     this.logger?.LogError("user component");
+
+    const currentYear = new Date().getFullYear();
+    const currentDay = new Date().getDate();
+    const currentMonth = new Date().getMonth();
+    this.minDate = new Date(currentYear - 50, currentMonth, currentDay);
+    this.maxDate = new Date(currentYear - 18, currentMonth, currentDay);
+
+    this.UserModel.dateOfBirth = formatDate(this.maxDate,'YYYY-MM-dd', "en-US");
   }
 
   SelectedUser(_selected:User){
@@ -44,7 +57,13 @@ export class UserComponent {
     this.UserModel.userTypeName = _selected.target.value;
   }
 
-  AddUserType(){
+  SelectedGender(_selected:any){
+    this.SelectedGenderId =  _selected.target.value;
+    this.UserModel.gender =  _selected.target.value;
+  }
+
+  AddUser(){
+    debugger;
     if(this.UserModel.id > 0)
     {
       this.UpdateUser();

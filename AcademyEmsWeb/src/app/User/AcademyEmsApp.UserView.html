@@ -29,267 +29,319 @@
     .div-center {
       width: 50%;
     }
+    .error{
+    font-family: arial;
+    color: red;
+}
   </style>
 </head>
 <body>
-  <h2>Users</h2>
+  <h2>Users below link is of validations</h2>
+  <h1> https://www.youtube.com/watch?v=Mu6axBh6HEk&t=9s</h1>
   <p>You can add/update/delete/view all the available users</p>
-  <div class="grid-container-element">
-  <div class="grid-child-element">
-    <table>
-      <tr>
-        <td>
-          User Id:
-        </td>
-        <td>
-          <input [(ngModel)]="UserModel.id" type="text" disabled="true">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          User Type:
-        </td>
-        <td>
-          <select name="UserTypeDropdown" [(ngModel)]="SelectedUserTypeId" (change)="SelectedUserType($event)">
-            <option [value]="0">Select UserType</option>
-            <option [value]="userType.id" *ngFor="let userType of UserTypes">{{userType.name}}</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          First Name:
-        </td>
-        <td>
-          <input [(ngModel)]="UserModel.firstName" type="text" size="10%">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Last Name:
-        </td>
-        <td>
-          <input [(ngModel)]="UserModel.lastName" type="text">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Date of Birth:
-        </td>
-        <td>
-          <input [(ngModel)]="UserModel.dateOfBirth" type="date">
-        </td>
-      </tr>      
-      <tr>
-        <td>
-          Gender:
-        </td>
-        <td>
-          <input [(ngModel)]="UserModel.gender" type="text">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E-Mail:
-        </td>
-        <td>
-          <input [(ngModel)]="UserModel.userEmail" type="text">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          MobileNo:
-        </td>
-        <td>
-          <input [(ngModel)]="UserModel.mobileNo" type="text">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Identity Type:
-        </td>
-        <td>
-          <input [(ngModel)]="UserModel.identityType" type="text">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Identity Id:
-        </td>
-        <td>
-          <input [(ngModel)]="UserModel.identityId" type="text">
-        </td>
-      </tr>
+  <form #userForm="ngForm">
+    <div class="grid-container-element">
+      <div class="grid-child-element">
+        <table>
+          <tr>
+            <td>User Id:</td>
+            <td>
+              <input name="id" [(ngModel)]="UserModel.id" type="text" disabled="true">
+            </td>
+          </tr>
+          <tr>
+            <td>User Type:</td>
+            <td>
+              <select name="UserTypeDropdown" #userType="ngModel" [(ngModel)]="SelectedUserTypeId" (change)="SelectedUserType($event)">
+                <option [value]="0">Select UserType</option>
+                <option [value]="userType.id" *ngFor="let userType of UserTypes">{{userType.name}}</option>
+              </select>
+            </td>            
+            <td class="error">
+              @if((userType.touched || userType.dirty)&&userType.value==0){
+                  <span>User type is required.</span>
+              }
+            </td>
+          </tr>
+          <tr>
+            <td>First Name:</td>
+            <td>
+              <input name="firstName" #fName="ngModel" [(ngModel)]="UserModel.firstName" type="text" required minlength="2">
+            </td>
+            <td class="error">
+                @if((fName.touched || fName.dirty)&&fName.errors?.['required']){
+                    <span>First name is required.</span>
+                }@else if((fName.touched || fName.dirty)&&fName.errors?.['minlength']){
+                  <span>Minimum 2 chars are required.</span>
+              }
+            </td>
+          </tr>
+          <tr>
+            <td>Last Name:</td>
+            <td>
+              <input name="lastName" #lName="ngModel"  [(ngModel)]="UserModel.lastName" type="text" required minlength="2">
+            </td>            
+            <td class="error">
+              @if((lName.touched || lName.dirty)&&lName.errors?.['required']){
+                  <span>Last name is required.</span>
+              }@else if((lName.touched || lName.dirty)&&lName.errors?.['minlength']){
+                <span>Minimum 2 chars are required.</span>
+            }
+          </td>
+          </tr>
+          <tr>
+            <td> Date of Birth:</td>
+            <td>
+              <input name="dateOfBirth"  [value]="UserModel.dateOfBirth | date:'YYYY-MM-dd'" [min]="minDate | date:'YYYY-MM-dd'" [max]="maxDate | date:'YYYY-MM-dd'" 
+              type="date" required >
+            </td> 
+          </tr>      
+          <tr>
+            <td>Gender:</td>
+            <td>
+              <select name="genderDropdown" #gender="ngModel" [(ngModel)]="SelectedGenderId" (change)="SelectedGender($event)">
+                <option [value]="0">Select Gender</option>
+                <option [value]="gender.id" *ngFor="let gender of Genders">{{gender.name}}</option>
+              </select>
+            </td>
+            <td class="error">
+              @if((gender.touched || gender.dirty)&&gender.value==0){
+                  <span>Gender is required.</span>
+              }
+            </td>
+          </tr>
+          <tr>
+            <td>E-Mail:</td>
+            <td>
+              <input name="userEmail" #email="ngModel" [(ngModel)]="UserModel.userEmail" type="text" required email>
+            </td>
+            <td class="error">
+              @if((email.touched || email.dirty)&&email.errors?.['required']){
+                  <span>Email is required.</span>
+              }@else if((email.touched || email.dirty)&&email.errors?.['email']){
+                <span>Valid Email format is required.</span>
+            }
+          </td>
+          </tr>
+          <tr>
+            <td>MobileNo:</td>
+            <td>
+              <input name="mobileNo" #mobileNo="ngModel" [(ngModel)]="UserModel.mobileNo" type="number" required min="1111111111" max="9999999999">
+            </td>
+            <td class="error">
+              @if((mobileNo.touched || mobileNo.dirty)&&mobileNo.errors?.['required']){
+                  <span>Mobile no is required.</span>
+              }@else if((mobileNo.touched || mobileNo.dirty)&&mobileNo.errors?.['min']){
+                <span>Please enter a valid mobile no.</span>
+            }@else if((mobileNo.touched || mobileNo.dirty)&&mobileNo.errors?.['max']){
+              <span>Please enter a valid mobile no.</span>
+          }
+          </td>
+          </tr>
+          <tr>
+            <td>Identity Type:</td>
+            <td>
+              <input name="identityType" #identityType="ngModel" [(ngModel)]="UserModel.identityType" type="text" required>
+            </td>
+            <td class="error">
+              @if((identityType.touched || identityType.dirty)&&identityType.errors?.['required']){
+                  <span>Identity type is required.</span>
+              }
+           </td>
+          </tr>
+          <tr>
+            <td>Identity Id:</td>
+            <td>
+              <input name="identityId" #identityId="ngModel" [(ngModel)]="UserModel.identityId" type="text" required>
+            </td>            
+            <td class="error">
+              @if((identityId.touched || identityId.dirty)&&identityId.errors?.['required']){
+                  <span>Identity id is required.</span>
+              }
+           </td>
+          </tr>          
+          <tr>
+            <td> Address Line 1:</td>
+            <td>
+              <input name="address1" #address1="ngModel" [(ngModel)]="UserModel.address1" type="text" required>
+            </td>
+            <td class="error">
+              @if((address1.touched || address1.dirty)&&address1.errors?.['required']){
+                  <span>Address1 id is required.</span>
+              }
+           </td>
+          </tr>          
+          <tr>
+            <td>Address Line 2: </td>
+            <td>
+              <input name="address2" #address2="ngModel" [(ngModel)]="UserModel.address2" type="text" required>
+            </td>
+            <td class="error">
+              @if((address2.touched || address2.dirty)&&address2.errors?.['required']){
+                  <span>Address2 id is required.</span>
+              }
+           </td>
+          </tr>          
+          <tr>
+            <td> City:</td>
+            <td>
+              <input name="city" #city="ngModel" [(ngModel)]="UserModel.city" type="text" required>
+            </td>
+            <td class="error">
+              @if((city.touched || city.dirty)&&city.errors?.['required']){
+                  <span>City id is required.</span>
+              }
+           </td>
+          </tr>          
+          <tr>
+            <td>Pin Code:</td>
+            <td>
+              <input name="pinCode" #pinCode="ngModel" [(ngModel)]="UserModel.pinCode" type="number" required min="100000" max="999999">
+            </td>
+            <td class="error">
+              @if((pinCode.touched || pinCode.dirty)&&pinCode.errors?.['required']){
+                  <span>Pincode id is required.</span>
+              }@else if((pinCode.touched || pinCode.dirty)&&pinCode.errors?.['min']){
+                <span>Valid pincode format is required.</span>
+            }@else if((pinCode.touched || pinCode.dirty)&&pinCode.errors?.['max']){
+              <span>Valid pincode format is required.</span>
+          }
+           </td>
+          </tr>
+        </table>
+    </div>
+    <div class="grid-child-element">
+      <table [cellPadding]="4">
+        <tr>
+          <td>
+            User Id:
+          </td>
+          <td>
+            {{UserModel.id}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            User Type:
+          </td>
+          <td>
+            {{UserModel.userTypeName}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            First Name:
+          </td>
+          <td>
+            {{UserModel.firstName}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Last Name:
+          </td>
+          <td>
+            {{UserModel.lastName}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Date of Birth:
+          </td>
+          <td>
+            {{UserModel.dateOfBirth}}
+          </td>
+        </tr>      
+        <tr>
+          <td>
+            Gender:
+          </td>
+          <td>
+            {{UserModel.gender}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E-Mail:
+          </td>
+          <td>
+            {{UserModel.userEmail}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            MobileNo:
+          </td>
+          <td>
+            {{UserModel.mobileNo}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Identity Type:
+          </td>
+          <td>
+            {{UserModel.identityType}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Identity Id:
+          </td>
+          <td>
+            {{UserModel.identityId}}
+          </td>
+        </tr>      
+        <tr>
+          <td>
+            Address Line 1:
+          </td>
+          <td>
+            {{UserModel.address1}}
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            Address Line 2:
+          </td>
+          <td>
+            {{UserModel.address2}}
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            City:
+          </td>
+          <td>
+            {{UserModel.city}}
+          </td>
+        </tr>      
+        <tr>
+          <td>
+            Pin Code:
+          </td>
+          <td>
+            {{UserModel.pinCode}}
+          </td>
+        </tr>  
+      </table>
+      <hr/>
+      <div  class="div-center">
+        <input (click)="AddUser()" type="button" value="Add/Update" [disabled] ="userForm.invalid">
+        <input (click)="DeleteUserType()" type="button" value="Delete" [disabled] ="userForm.invalid">
 
-      
-      <tr>
-        <td>
-          Address Line 1:
-        </td>
-        <td>
-          <input [(ngModel)]="UserModel.address1" type="text">
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          Address Line 2:
-        </td>
-        <td>
-          <input [(ngModel)]="UserModel.address2" type="text">
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          City:
-        </td>
-        <td>
-          <input [(ngModel)]="UserModel.city" type="text">
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          Pin Code:
-        </td>
-        <td>
-          <input [(ngModel)]="UserModel.pinCode" type="text">
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="grid-child-element">
-    <table [cellPadding]="4">
-      <tr>
-        <td>
-          User Id:
-        </td>
-        <td>
-          {{UserModel.id}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          User Type:
-        </td>
-        <td>
-          {{UserModel.userTypeName}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          First Name:
-        </td>
-        <td>
-          {{UserModel.firstName}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Last Name:
-        </td>
-        <td>
-          {{UserModel.lastName}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Date of Birth:
-        </td>
-        <td>
-          {{UserModel.dateOfBirth}}
-        </td>
-      </tr>      
-      <tr>
-        <td>
-          Gender:
-        </td>
-        <td>
-          {{UserModel.gender}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E-Mail:
-        </td>
-        <td>
-          {{UserModel.userEmail}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          MobileNo:
-        </td>
-        <td>
-          {{UserModel.mobileNo}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Identity Type:
-        </td>
-        <td>
-          {{UserModel.identityType}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Identity Id:
-        </td>
-        <td>
-          {{UserModel.identityId}}
-        </td>
-      </tr>      
-      <tr>
-        <td>
-          Address Line 1:
-        </td>
-        <td>
-          {{UserModel.address1}}
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          Address Line 2:
-        </td>
-        <td>
-          {{UserModel.address2}}
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          City:
-        </td>
-        <td>
-          {{UserModel.city}}
-        </td>
-      </tr>      
-      <tr>
-        <td>
-          Pin Code:
-        </td>
-        <td>
-          {{UserModel.pinCode}}
-        </td>
-      </tr>  
-    </table>
-    <hr/>
-    <div  class="div-center">
-      <input (click)="AddUserType()" type="button" value="Add/Update" (disabled) ="Disable">
-      <input (click)="DeleteUserType()" type="button" value="Delete" (disabled) ="Disable">
-
+      </div>
     </div>
   </div>
+</form>
+<div class="grid-child-element">     
+  <input (click)="GetAllUsers()" type="button" value="Get All"> <br/>
+  <ems-grid [grid-data]="UserModels" 
+  [grid-columns]="GridColumns"
+    (grid-selected)="SelectedUser($event)"></ems-grid>
 </div>
-    <div class="grid-child-element">     
-      <input (click)="GetAllUsers()" type="button" value="Get All"> <br/>
-      <ems-grid [grid-data]="UserModels" 
-      [grid-columns]="GridColumns"
-       (grid-selected)="SelectedUser($event)"></ems-grid>
-    </div>
 
 </body>
 </html>
