@@ -25,7 +25,7 @@
     <div class="grid-child-element">     
       <input (click)="GetAllCourseTypes()" type="button" value="Get All"> <br/>
       <ems-grid [grid-data]="CourseTypeModels" 
-      [grid-columns]="[{'colName':'id'},{'colName':'type'},{'colName':'description'}]"
+      [grid-columns]="GridColumns"
        (grid-selected)="SelectCourseType($event)"></ems-grid>
     </div>
 

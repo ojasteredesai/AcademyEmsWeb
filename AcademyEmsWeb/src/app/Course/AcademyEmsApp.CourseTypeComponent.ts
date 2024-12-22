@@ -20,6 +20,7 @@ export class CourseTypeComponent {
   CourseTypeModels : Array<CourseType> = new Array<CourseType>();
   Disable:boolean=false;
   logger : BaseLogger | undefined;
+  GridColumns = [{'colName':'id','displayName':'Id'},{'colName':'type','displayName':'Course Type'},{'colName':'description','displayName':'Description'}];  
 
   constructor(_logger : BaseLogger, public httpClient:HttpClient){
     this.logger = _logger;

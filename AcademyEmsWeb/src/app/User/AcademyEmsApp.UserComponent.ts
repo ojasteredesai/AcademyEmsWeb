@@ -86,7 +86,7 @@ export class UserComponent {
    });
   }
 
-  DeleteUserType(){
+  DeleteUser(){
     this.httpClient.post("https://localhost:7174/api/User/DeleteUser?id="+this.UserModel.id,null)
     .subscribe({
       next: this.GetAllUsers.bind(this),
