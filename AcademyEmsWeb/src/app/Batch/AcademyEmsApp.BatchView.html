@@ -50,9 +50,23 @@
           <tr>
             <td>Course Type:</td>
             <td>
-              <select name="Ba" #userType="ngModel" [(ngModel)]="SelectedCourseTypeId" (change)="SelectedCourseType($event)">
+              <select name="courseTypeDropdown" #courseType="ngModel" [(ngModel)]="SelectedCourseTypeId" (change)="SelectedCourseType($event)">
                 <option [value]="0">Select UserType</option>
                 <option [value]="courseType.id" *ngFor="let courseType of CourseTypes">{{courseType.name}}</option>
+              </select>
+            </td>            
+            <td class="error">
+              @if((courseType.touched || courseType.dirty)&&courseType.value==0){
+                  <span>Course type is required.</span>
+              }
+            </td>
+          </tr>  
+          <tr>
+            <td>Course Name:</td>
+            <td>
+              <select name="courseDropdown" #userType="ngModel" [(ngModel)]="SelectedCourseId" (change)="SelectedCourse($event)">
+                <option [value]="0">Select Course</option>
+                <option [value]="course.id" *ngFor="let course of CourseModels">{{course.courseName}}</option>
               </select>
             </td>            
             <td class="error">
