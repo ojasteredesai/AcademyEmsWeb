@@ -1,0 +1,96 @@
+
+
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <style>
+      input[type=text], input[type=date], select {
+     
+        padding: 5px 5px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+    .grid-container-element { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      grid-gap: 10; 
+      width: 100%; 
+    } 
+    .grid-child-element { 
+        margin: 10px; padding: 10px;
+        border: 1px solid lightblue; 
+        width: auto; 
+        gap: 10px;
+    }
+    .div-center {
+      width: 50%;
+    }
+    .error{
+    font-family: arial;
+    color: red;
+}
+  </style>
+</head>
+<body>
+  <p>You can add/update/delete/view all the available batches</p>
+  <form #batchForm="ngForm">
+    <div class="grid-container-element">
+      <div class="grid-child-element">
+        <table>
+          <tr>
+            <td>Batch Id:</td>
+            <td>
+              <input name="id" [(ngModel)]="BatchModel.id" type="text" disabled="true">
+            </td>
+          </tr>
+          <tr>
+            <td>Course Type:</td>
+            <td>
+              <select name="Ba" #userType="ngModel" [(ngModel)]="SelectedCourseTypeId" (change)="SelectedCourseType($event)">
+                <option [value]="0">Select UserType</option>
+                <option [value]="courseType.id" *ngFor="let courseType of CourseTypes">{{courseType.name}}</option>
+              </select>
+            </td>            
+            <td class="error">
+              @if((userType.touched || userType.dirty)&&userType.value==0){
+                  <span>Course type is required.</span>
+              }
+            </td>
+          </tr>         
+        </table>
+    </div>
+    <div class="grid-child-element">
+      <table [cellPadding]="4">
+        <tr>
+          <td>
+            Batch Id:
+          </td>
+          <td>
+            {{BatchModel.id}}
+          </td>
+        </tr>      
+      </table>
+      <hr/>
+      <div  class="div-center">
+        <input (click)="AddBatch()" type="button" value="Add/Update" [disabled] ="batchForm.invalid">
+        <input (click)="DeleteBatch()" type="button" value="Delete" [disabled] ="batchForm.invalid">
+
+      </div>
+    </div>
+  </div>
+</form>
+<div class="grid-child-element">     
+  <input (click)="GetAllBatches()" type="button" value="Get All"> <br/>
+  <ems-grid [grid-data]="BatchModels" 
+  [grid-columns]="GridColumns"
+    (grid-selected)="SelectedBatch($event)"></ems-grid>
+</div>
+
+</body>
+</html>
+
+
